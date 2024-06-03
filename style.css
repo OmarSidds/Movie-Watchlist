@@ -3,7 +3,10 @@ body {
     padding: 0;
     background-color: #121212;
     font-family: sans-serif;
+    position: relative;
 }
+
+/* Head picture and text */
 
 .head {
     width: 100%; 
@@ -18,7 +21,7 @@ body {
 .text-overlay {
     position: absolute;
     top: 50%;
-    left: 30%;
+    left: 35%;
     transform: translate(-50%, -50%);
 
     color: white;
@@ -50,4 +53,35 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Search Bar */
+
+.searchBarDiv {
+    display: flex;
+    position: absolute;
+    top: 92%;
+    left: 16%;
+}
+
+#search-Input,
+#search-Btn {
+    padding: 0.5em 0.8125em;
+    border: none;
+}
+
+#search-Input {
+    color: white;
+    background: #2E2E2F;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+#search-Btn {
+    color: white;
+    font-size: 0.7em;
+    padding: 0.5em 1.5em;
+    background: #4B4B4B;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
