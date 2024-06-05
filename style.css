@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #121212;
-    font-family: sans-serif;
+    font-family: 'Inter', sans-serif;
     position: relative;
 }
 
@@ -84,4 +84,106 @@ body {
     background: #4B4B4B;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
+}
+
+#search-Btn:hover {
+    cursor: point;
+    background-color: lightgray;
+}
+
+/* Main Content */
+
+.iconAndText {
+    position: absolute;
+    top: 200%;
+    left: 35.5%;
+    color: #2E2E2F;
+    text-align: center;
+}
+
+.mainContent {
+    position: absolute;
+    top: 130%;
+    margin: 0 1em;
+}
+
+.fa-solid {
+    font-size: 4em;
+}
+
+.movieContainer {
+    display: flex;
+    gap: 0.5em;
+    margin-bottom: 1em;
+}
+
+.moviePoster {
+    width: 6.18em;
+    height: 10em;
+}
+
+.movieTitle {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: white;
+    margin: 0.625em 0 0.3em 0;
+}
+
+.movieTimeGenreBtn {
+    display: flex;
+    margin: 0;
+}
+
+.movieTimeGenreBtn p {
+    color: white;
+    margin-right: 0.5em;
+    font-size: 0.8em;
+    font-weight: 300;
+}
+
+#watchlistBtn {
+    color: white;
+    background-color: #121212;
+    border: none;
+    font-size: 0.8em;
+    font-weight: 300;
+}
+
+#watchlistBtn:hover,
+.material-icons:hover {
+    color: yellow;
+    cursor: pointer;
+}
+
+.material-icons {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.plot {
+    font-size: 0.8em;
+    color: #A5A5A5;
+    font-weight: 300;
+    margin: 0;
+}
+
+
+.text-container {
+    max-height: 50px; /* Initial height to hide excess text */
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+.text-container.expanded {
+    max-height: none; /* Expand to show full text */
+}
+.view-more-btn {
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+    border: none;
+    background: none;
+    font: inherit;
+    padding: 0;
 }
