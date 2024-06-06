@@ -93,7 +93,7 @@ body {
 
 /* Main Content */
 
-.iconAndText {
+#iconAndText {
     position: absolute;
     top: 200%;
     left: 35.5%;
@@ -119,14 +119,14 @@ body {
 
 .moviePoster {
     width: 6.18em;
-    height: 10em;
+    height: 9em;
 }
 
 .movieTitle {
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: 500;
     color: white;
-    margin: 0.625em 0 0.3em 0;
+    margin: 0.625em 0 0.2em 0;
 }
 
 .movieTimeGenreBtn {
@@ -136,7 +136,7 @@ body {
 
 .movieTimeGenreBtn p {
     color: white;
-    margin-right: 0.5em;
+    margin-right: 0.6em;
     font-size: 0.8em;
     font-weight: 300;
 }
@@ -147,6 +147,8 @@ body {
     border: none;
     font-size: 0.8em;
     font-weight: 300;
+    margin: 0;
+    padding: 0;
 }
 
 #watchlistBtn:hover,
@@ -165,25 +167,9 @@ body {
     color: #A5A5A5;
     font-weight: 300;
     margin: 0;
-}
 
-
-.text-container {
-    max-height: 50px; /* Initial height to hide excess text */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    transition: max-height 0.5s ease;
-}
-.text-container.expanded {
-    max-height: none; /* Expand to show full text */
-}
-.view-more-btn {
-    display: block;
-    margin-top: 10px;
-    cursor: pointer;
-    color: blue;
-    text-decoration: underline;
-    border: none;
-    background: none;
-    font: inherit;
-    padding: 0;
 }

@@ -1,6 +1,7 @@
 const searchBtn = document.getElementById("search-Btn")
 const searchInput = document.getElementById("search-Input")
 const mainContent = document.getElementById("mainContent")
+const iconAndText = document.getElementById("iconAndText")
 
 function addCharacter(str, char) {
     const characters = str.split('');
@@ -14,6 +15,18 @@ function addCharacter(str, char) {
     return characters.join('');
 }
 
+
+function callBack() {
+    iconAndText.innerHTML = ''
+
+    let searchValue = searchInput.value
+    searchValue = addCharacter(searchValue, "+")
+    fetchData(searchValue)
+}
+searchBtn.addEventListener("click", callBack)
+
+
+
 async function fetchData(searchValue) {
     try {
 
@@ -24,18 +37,12 @@ async function fetchData(searchValue) {
         }
 
         const arrayOfMovies = await response.json();
-
-        mainContent.innerHTML = '';
-        document.getElementsByClassName("iconAndText");
-        console.log(arrayOfMovies)
         specificMovieData(arrayOfMovies)
         
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }
 }
-
-/* Finish loopArray function   */
 
 
 async function specificMovieData(arrayOfMovies) {
@@ -82,22 +89,14 @@ function inputDataIntoMainContentDiv(singleMovieData) {
                 <div class="text-container" id="textContainer">
                     <p class="plot">${singleMovieData.Plot}</p>
                 </div>
-                <button class="view-more-btn" id="viewMoreBtn">View More</button>
             </div>
                 
         </div>
         `
 }
 
-function callBack() {
-    let searchValue = searchInput.value
-    searchValue = addCharacter(searchValue, "+")
-    fetchData(searchValue)
-}
-searchBtn.addEventListener("click", callBack)
 
-
-
+/*
 const textContainer = document.getElementById('textContainer');
 const viewMoreBtn = document.getElementById('viewMoreBtn');
 
@@ -108,4 +107,6 @@ viewMoreBtn.addEventListener('click', function() {
     } else {
         viewMoreBtn.textContent = 'View More';
     }
-});
+})
+
+*/
