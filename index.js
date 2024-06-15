@@ -2,6 +2,8 @@ const searchBtn = document.getElementById("search-Btn")
 const searchInput = document.getElementById("search-Input")
 const mainContent = document.getElementById("mainContent")
 const iconAndText = document.getElementById("iconAndText")
+const watchlistBtns = document.querySelectorAll(".watchlistBtn")
+let watchlistMovies = []
 
 function addCharacter(str, char) {
     const characters = str.split('');
@@ -24,7 +26,6 @@ function callBack() {
     fetchData(searchValue)
 }
 searchBtn.addEventListener("click", callBack)
-
 
 
 async function fetchData(searchValue) {
@@ -57,7 +58,7 @@ async function specificMovieData(arrayOfMovies) {
             }
     
             let singleMovieData = await response.json()
-            
+
             inputDataIntoMainContentDiv(singleMovieData)
             
         } catch (error) {
@@ -68,9 +69,9 @@ async function specificMovieData(arrayOfMovies) {
 }
 
 function inputDataIntoMainContentDiv(singleMovieData) {
-
+    
     mainContent.innerHTML += `
-        <div class="movieContainer">
+        <div class="movieContainer" value=${singleMovieData.imdbID}>
                 
             <div class="movieInfoPoster">
                 <img class="moviePoster" src=${singleMovieData.Poster}>
@@ -81,22 +82,44 @@ function inputDataIntoMainContentDiv(singleMovieData) {
                 <div class="movieTimeGenreBtn">
                     <p>${singleMovieData.Runtime}</p>
                     <p>${singleMovieData.Genre}</p>
-                    <button id="watchlistBtn">
-                        <i class="material-icons">add</i>
-                        Watchlist
+                    <button class="watchlistBtn" data-imdbid=${singleMovieData.imdbID}>
+                        <i class="material-icons"></i>
+                        + Watchlist
                     </button>
                 </div>
+
                 <div class="text-container" id="textContainer">
                     <p class="plot">${singleMovieData.Plot}</p>
                 </div>
             </div>
                 
         </div>
+        <hr>
         `
+        const watchlistBtns = document.querySelectorAll(".watchlistBtn");
+        watchlistBtns.forEach(btn => {
+            btn.addEventListener("click", (event) => {
+                hello(event.target.dataset.imdbid);
+            })
+        })
+}
+
+function hello(imdbID) {
+    watchlistMovies.push(imdbID)
 }
 
 
+
+
+
 /*
+watchlistBtns.forEach(btn => {
+    btn.addEventListener("click", (event) => {
+        hello(event.target.dataset.imdbid);
+    });
+});
+
+
 const textContainer = document.getElementById('textContainer');
 const viewMoreBtn = document.getElementById('viewMoreBtn');
 
