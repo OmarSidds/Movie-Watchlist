@@ -5,6 +5,7 @@ const iconAndText = document.getElementById("iconAndText")
 const watchlistBtns = document.querySelectorAll(".watchlistBtn")
 let watchlistMovies = []
 
+
 function addCharacter(str, char) {
     const characters = str.split('');
 
@@ -21,9 +22,17 @@ function addCharacter(str, char) {
 function callBack() {
     iconAndText.innerHTML = ''
 
-    let searchValue = searchInput.value
-    searchValue = addCharacter(searchValue, "+")
-    fetchData(searchValue)
+    if(searchInput.value == ""){
+        mainContent.innerHTML = `
+            <p class="emptySearch">Unable to find what you’re looking for. 
+                Please try another search.</p>
+        `
+    }else {
+        mainContent.innerHTML = ""
+        let searchValue = searchInput.value
+        searchValue = addCharacter(searchValue, "+")
+        fetchData(searchValue)
+    }
 }
 searchBtn.addEventListener("click", callBack)
 

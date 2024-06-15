@@ -180,3 +180,13 @@ hr {
     width: 100%;
     height: 1.5px;
 }
+
+/* Empty Search */
+
+.emptySearch {
+    font-size: 0.8em;
+    font-weight: 700;
+    margin-top: 40px;
+    text-align: center;
+    color: #787878;
+}
