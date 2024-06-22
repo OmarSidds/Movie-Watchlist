@@ -2,8 +2,7 @@ const searchBtn = document.getElementById("search-Btn")
 const searchInput = document.getElementById("search-Input")
 const mainContent = document.getElementById("mainContent")
 const iconAndText = document.getElementById("iconAndText")
-const watchlistBtns = document.querySelectorAll(".watchlistBtn")
-let watchlistMovies = []
+export let watchlistMovies = JSON.parse(localStorage.getItem("watchlistMovies")) || [];
 
 
 function addCharacter(str, char) {
@@ -34,7 +33,13 @@ function callBack() {
         fetchData(searchValue)
     }
 }
-searchBtn.addEventListener("click", callBack)
+
+try {
+    searchBtn.addEventListener("click", callBack)
+} catch(error) {
+
+}
+
 
 
 async function fetchData(searchValue) {
@@ -66,9 +71,9 @@ async function specificMovieData(arrayOfMovies) {
                 throw new Error('Network response was not ok ' + response.statusText)
             }
     
-            let singleMovieData = await response.json()
+            let watchlistMovieData = await response.json()
 
-            inputDataIntoMainContentDiv(singleMovieData)
+            inputDataIntoMainContentDiv(watchlistMovieData)
             
         } catch (error) {
 
@@ -77,28 +82,28 @@ async function specificMovieData(arrayOfMovies) {
     } 
 }
 
-function inputDataIntoMainContentDiv(singleMovieData) {
+function inputDataIntoMainContentDiv(watchlistMovieData) {
     
     mainContent.innerHTML += `
-        <div class="movieContainer" value=${singleMovieData.imdbID}>
+        <div class="movieContainer" value=${watchlistMovieData.imdbID}>
                 
             <div class="movieInfoPoster">
-                <img class="moviePoster" src=${singleMovieData.Poster}>
+                <img class="moviePoster" src=${watchlistMovieData.Poster}>
             </div>
 
             <div class="movieInfo">
-                <h2 class="movieTitle">${singleMovieData.Title}</h2>
+                <h2 class="movieTitle">${watchlistMovieData.Title}</h2>
                 <div class="movieTimeGenreBtn">
-                    <p>${singleMovieData.Runtime}</p>
-                    <p>${singleMovieData.Genre}</p>
-                    <button class="watchlistBtn" data-imdbid=${singleMovieData.imdbID}>
+                    <p>${watchlistMovieData.Runtime}</p>
+                    <p>${watchlistMovieData.Genre}</p>
+                    <button class="watchlistBtn" data-imdbid=${watchlistMovieData.imdbID}>
                         <i class="material-icons"></i>
                         + Watchlist
                     </button>
                 </div>
 
                 <div class="text-container" id="textContainer">
-                    <p class="plot">${singleMovieData.Plot}</p>
+                    <p class="plot">${watchlistMovieData.Plot}</p>
                 </div>
             </div>
                 
@@ -108,37 +113,14 @@ function inputDataIntoMainContentDiv(singleMovieData) {
         const watchlistBtns = document.querySelectorAll(".watchlistBtn");
         watchlistBtns.forEach(btn => {
             btn.addEventListener("click", (event) => {
-                hello(event.target.dataset.imdbid);
+                storeMovieData(event.target.dataset.imdbid);
             })
         })
 }
 
-function hello(imdbID) {
+/* Code for Watchlist page */
+
+function storeMovieData(imdbID) {
     watchlistMovies.push(imdbID)
+    localStorage.setItem("watchlistMovies", JSON.stringify(watchlistMovies));
 }
-
-
-
-
-
-/*
-watchlistBtns.forEach(btn => {
-    btn.addEventListener("click", (event) => {
-        hello(event.target.dataset.imdbid);
-    });
-});
-
-
-const textContainer = document.getElementById('textContainer');
-const viewMoreBtn = document.getElementById('viewMoreBtn');
-
-viewMoreBtn.addEventListener('click', function() {
-    textContainer.classList.toggle('expanded');
-    if (textContainer.classList.contains('expanded')) {
-        viewMoreBtn.textContent = 'View Less';
-    } else {
-        viewMoreBtn.textContent = 'View More';
-    }
-})
-
-*/
